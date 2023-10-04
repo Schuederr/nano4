@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Model: ObservableObject {
+class WorkModel: ObservableObject {
     @Published var isActive = false
     @Published var showingAlert = false
     @Published var time: String = "25:00"

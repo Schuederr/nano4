@@ -13,7 +13,8 @@
 		F15DBB172ACC51060015FEF2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DBB162ACC51060015FEF2 /* Preview Assets.xcassets */; };
 		F15DBB1F2ACC53390015FEF2 /* WorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB1E2ACC53390015FEF2 /* WorkView.swift */; };
 		F15DBB212ACC53430015FEF2 /* RestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB202ACC53430015FEF2 /* RestView.swift */; };
-		F15DBB242ACC53630015FEF2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB232ACC53630015FEF2 /* Model.swift */; };
+		F15DBB242ACC53630015FEF2 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB232ACC53630015FEF2 /* WorkModel.swift */; };
+		F18572042ACE071A00A61C2A /* RestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18572032ACE071A00A61C2A /* RestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +25,8 @@
 		F15DBB162ACC51060015FEF2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F15DBB1E2ACC53390015FEF2 /* WorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkView.swift; sourceTree = "<group>"; };
 		F15DBB202ACC53430015FEF2 /* RestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestView.swift; sourceTree = "<group>"; };
-		F15DBB232ACC53630015FEF2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F15DBB232ACC53630015FEF2 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
+		F18572032ACE071A00A61C2A /* RestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 				F15DBB0F2ACC51050015FEF2 /* nano4App.swift */,
 				F15DBB1D2ACC53150015FEF2 /* Views */,
 				F15DBB112ACC51050015FEF2 /* ContentView.swift */,
-				F15DBB232ACC53630015FEF2 /* Model.swift */,
+				F15DBB232ACC53630015FEF2 /* WorkModel.swift */,
+				F18572032ACE071A00A61C2A /* RestModel.swift */,
 				F15DBB132ACC51060015FEF2 /* Assets.xcassets */,
 				F15DBB152ACC51060015FEF2 /* Preview Content */,
 			);
@@ -154,11 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F15DBB242ACC53630015FEF2 /* Model.swift in Sources */,
+				F15DBB242ACC53630015FEF2 /* WorkModel.swift in Sources */,
 				F15DBB122ACC51050015FEF2 /* ContentView.swift in Sources */,
 				F15DBB1F2ACC53390015FEF2 /* WorkView.swift in Sources */,
 				F15DBB212ACC53430015FEF2 /* RestView.swift in Sources */,
 				F15DBB102ACC51050015FEF2 /* nano4App.swift in Sources */,
+				F18572042ACE071A00A61C2A /* RestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

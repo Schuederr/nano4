@@ -9,15 +9,15 @@ import SwiftUI
 
 struct WorkView: View {
     
-    @StateObject private var vm = Model()
+    @StateObject private var workModel = WorkModel()
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
     
     var body: some View {
         VStack {
-            Text("\(vm.time)")
+            Text("\(workModel.time)")
                 .font(.system(size: 70, weight: .medium, design: .rounded))
-                .alert("Timer done!", isPresented: $vm.showingAlert) {
+                .alert("Timer done!", isPresented: $workModel.showingAlert) {
                     Button("Continue", role: .cancel) {
                         // Code
                     }
@@ -31,25 +31,25 @@ struct WorkView: View {
                             .stroke(Color.gray, lineWidth: 4)
                     )
             
-            Slider(value: $vm.minutes, in: 1...25, step: 1)
+            Slider(value: $workModel.minutes, in: 1...25, step: 1)
                 .padding()
-                .disabled(vm.isActive)
-                .animation(.easeInOut, value: vm.minutes)
+                .disabled(workModel.isActive)
+                .animation(.easeInOut, value: workModel.minutes)
                 .frame(width: width)
 
             HStack(spacing:50) {
                 Button("Start") {
-                    vm.start(minutes: vm.minutes)
+                    workModel.start(minutes: workModel.minutes)
                 }
-                .disabled(vm.isActive)
+                .disabled(workModel.isActive)
                 
-                Button("Reset", action: vm.reset)
+                Button("Reset", action: workModel.reset)
                     .tint(.red)
             }
             .frame(width: width)
         }
         .onReceive(timer) { _ in
-            vm.updateCountdown()
+            workModel.updateCountdown()
         }
     }
 }
