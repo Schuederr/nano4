@@ -9,7 +9,9 @@ import SwiftUI
 
 struct RestView: View {
     
-    @StateObject private var restModel = RestModel()
+    @StateObject var restModel = RestModel()
+    @StateObject var workModel = WorkModel()
+    
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
     
@@ -17,8 +19,8 @@ struct RestView: View {
         VStack {
             Text("\(restModel.time)")
                 .font(.system(size: 70, weight: .medium, design: .rounded))
-                .alert("Timer done!", isPresented: $restModel.showingAlert) {
-                    Button("Continue", role: .cancel) {
+                .alert("Acabou o sossego", isPresented: $restModel.showingAlert) {
+                    Button("Trabalhar", role: .cancel) {
                         // Code
                     }
                 }
@@ -31,22 +33,30 @@ struct RestView: View {
                             .stroke(Color.gray, lineWidth: 4)
                     )
             
-            Slider(value: $restModel.minutes, in: 1...5, step: 1)
+            Slider(value: $restModel.minutes, in: 1...7,step: 1)
                 .padding()
                 .disabled(restModel.isActive)
                 .animation(.easeInOut, value: restModel.minutes)
-                .frame(width: width)
+                .frame(width: .infinity)
+                .tint(.red)
 
             HStack(spacing:50) {
-                Button("Start") {
-                    restModel.start(minutes: restModel.minutes)
-                }
-                .disabled(restModel.isActive)
+                Button(action: {
+                restModel.start(minutes: restModel.minutes)
+                }, label: {
+                    Image(systemName: "play.fill")
+                        .font(.title)
+                }).disabled(restModel.isActive)
+                    .disabled(workModel.isActive)
                 
-                Button("Reset", action: restModel.reset)
-                    .tint(.red)
+                Button(action: {
+                    restModel.reset()
+                }, label: {
+                    Image(systemName: "stop.fill")
+                        .tint(.red)
+                        .font(.title)
+                }).disabled(restModel.isActive == false)
             }
-            .frame(width: width)
         }
         .onReceive(timer) { _ in
             restModel.updateCountdown()

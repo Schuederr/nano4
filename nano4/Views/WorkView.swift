@@ -9,7 +9,11 @@ import SwiftUI
 
 struct WorkView: View {
     
-    @StateObject private var workModel = WorkModel()
+    @StateObject var workModel = WorkModel()
+    @StateObject var restModel = RestModel()
+    @Binding var tabSelected: Int
+    
+    
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
     
@@ -17,11 +21,11 @@ struct WorkView: View {
         VStack {
             Text("\(workModel.time)")
                 .font(.system(size: 70, weight: .medium, design: .rounded))
-                .alert("Timer done!", isPresented: $workModel.showingAlert) {
-                    Button("Continue", role: .cancel) {
-                        // Code
-                    }
-                }
+//                .alert("Timer done!", isPresented: $workModel.showingAlert) {
+//                    Button("Continue", role: .cancel) {
+//                        // Code
+//                    }
+//                }
                 .padding()
                 .frame(width: width)
                 .background(.thinMaterial)
@@ -35,18 +39,27 @@ struct WorkView: View {
                 .padding()
                 .disabled(workModel.isActive)
                 .animation(.easeInOut, value: workModel.minutes)
-                .frame(width: width)
+                .frame(width: .infinity)
 
             HStack(spacing:50) {
-                Button("Start") {
-                    workModel.start(minutes: workModel.minutes)
-                }
-                .disabled(workModel.isActive)
                 
-                Button("Reset", action: workModel.reset)
-                    .tint(.red)
+                Button(action: {
+                workModel.start(minutes: workModel.minutes)
+                }, label: {
+                    Image(systemName: "play.fill")
+                        .font(.title)
+                }).disabled(workModel.isActive)
+                    .disabled(restModel.isActive)
+                
+                Button(action: {
+                    workModel.reset()
+                }, label: {
+                    Image(systemName: "stop.fill")
+                        .tint(.red)
+                        .font(.title)
+                }).disabled(workModel.isActive == false)
+                
             }
-            .frame(width: width)
         }
         .onReceive(timer) { _ in
             workModel.updateCountdown()
@@ -55,5 +68,5 @@ struct WorkView: View {
 }
 
 #Preview {
-    WorkView()
+    WorkView(tabSelected: .constant(0))
 }

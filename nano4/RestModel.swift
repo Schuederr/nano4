@@ -10,8 +10,8 @@ import Foundation
 class RestModel: ObservableObject {
     @Published var isActive = false
     @Published var showingAlert = false
-    @Published var time: String = "5:00"
-    @Published var minutes: Float = 5.0 {
+    @Published var time: String = "7:00"
+    @Published var minutes: Float = 7.0 {
         didSet {
             self.time = "\(Int(minutes)):00"
         }
@@ -21,12 +21,12 @@ class RestModel: ObservableObject {
     private var endDate = Date()
     
     // Start the timer with the given amount of minutes
-            func start(minutes: Float) {
-                self.initialTime = Int(minutes)
-                self.endDate = Date()
-                self.isActive = true
-                self.endDate = Calendar.current.date(byAdding: .minute, value: Int(minutes), to: endDate)!
-            }
+    func start(minutes: Float) {
+            self.initialTime = Int(minutes)
+            self.endDate = Date()
+            self.isActive = true
+            self.endDate = Calendar.current.date(byAdding: .minute, value: Int(minutes), to: endDate)!
+    }
     
     // Reset the timer
     func reset() {
@@ -36,7 +36,7 @@ class RestModel: ObservableObject {
     }
     
     // Show updates of the timer
-    func updateCountdown(){
+    func updateCountdown() {
         guard isActive else { return }
         
         // Gets the current date and makes the time difference calculation
@@ -60,7 +60,11 @@ class RestModel: ObservableObject {
         // Updates the time string with the formatted time
         self.minutes = Float(minutes)
         self.time = String(format:"%d:%02d", minutes, seconds)
-    }
     
+    }
 }
+
+
+
+
 
