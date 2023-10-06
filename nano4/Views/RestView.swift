@@ -11,10 +11,12 @@ struct RestView: View {
     
     @StateObject var restModel = RestModel()
     @StateObject var workModel = WorkModel()
+    @State var verTempo = false
+    @State private var showAlert = false
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
-    @State var verTempo = false
+    
     
     var body: some View {
         VStack {
@@ -32,7 +34,7 @@ struct RestView: View {
             
             Slider(value: $restModel.minutes, in: 1...7,step: 1)
                 .padding()
-                .disabled(restModel.isActive)
+                .disabled(true)
                 .animation(.easeInOut, value: restModel.minutes)
                 .tint(.red)
 
@@ -59,12 +61,18 @@ struct RestView: View {
                     .disabled(workModel.isActive)
                 
                 Button(action: {
-                    restModel.reset()
+                    showAlert = true
                 }, label: {
                     Image(systemName: "stop.fill")
                         .tint(.red)
                         .font(.title)
                 }).disabled(restModel.isActive == false)
+                    .alert(isPresented: $showAlert){
+                        Alert(
+                        title: Text("Deseja resetar o timer?"),
+                        primaryButton: .destructive(Text("Cancelar")),
+                        secondaryButton:                                 .default(Text("Resetar"), action: restModel.reset))
+                    }
             }
         }
         .padding()

@@ -14,10 +14,12 @@ struct WorkView: View {
     @StateObject var restModel = RestModel()
     @Binding var tabSelected: Int
     @State var verTempo = false
+    @State private var showAlert = false
     
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let width: Double = 250
+    
     
     var body: some View {
         VStack(spacing: 50) {
@@ -39,7 +41,7 @@ struct WorkView: View {
             
             Slider(value: $workModel.minutes, in: 1...25, step: 1)
                 .padding()
-                .disabled(workModel.isActive)
+                .disabled(true)
                 .animation(.easeInOut, value: workModel.minutes)
                 .tint(.yellow)
 
@@ -75,13 +77,20 @@ struct WorkView: View {
                     .disabled(restModel.isActive)
                 
                 Button(action: {
-                    workModel.reset()
+                    showAlert = true
                 }, label: {
                     Image(systemName: "stop.fill")
                         .tint(.red)
                         .font(.title)
                 }).disabled(workModel.isActive == false)
-                
+                    .alert(isPresented: $showAlert){
+                        Alert(
+                        title: Text("Deseja resetar o timer?"),
+                        primaryButton: 
+                                .default(Text("Cancelar")),
+                        secondaryButton:
+                                .destructive(Text("Resetar"), action: workModel.reset))
+                    }
             }
         }
         .padding()

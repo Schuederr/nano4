@@ -19,12 +19,12 @@ struct VerTempoRest: View {
             Text("\(restModel.time)")
                 .font(.system(size: 70, weight: .medium, design: .rounded))
                 .foregroundStyle(.white)
-                .alert("Timer done!", isPresented: $restModel.showingAlert) {
-                    Button("Continue", role: .cancel) {
-                        // Code
-                    }
-                }
-                .padding()
+//                .alert("Timer done!", isPresented: $restModel.showingAlert) {
+//                    Button("Continue", role: .cancel) {
+//                        // Code
+//                    }
+//                }
+//                .padding()
         } else {
             Text("descansa")
         }
