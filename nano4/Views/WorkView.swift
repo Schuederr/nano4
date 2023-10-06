@@ -12,6 +12,7 @@ struct WorkView: View {
     @StateObject var workModel = WorkModel()
     @StateObject var restModel = RestModel()
     @Binding var tabSelected: Int
+    @State var verTempo = false
     
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -19,27 +20,25 @@ struct WorkView: View {
     
     var body: some View {
         VStack {
-            Text("\(workModel.time)")
-                .font(.system(size: 70, weight: .medium, design: .rounded))
-//                .alert("Timer done!", isPresented: $workModel.showingAlert) {
-//                    Button("Continue", role: .cancel) {
-//                        // Code
-//                    }
-//                }
-                .padding()
-                .frame(width: width)
-                .background(.thinMaterial)
-                .cornerRadius(20)
-                .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 4)
-                    )
+            Text("VAAAAAAAAI")
+                .foregroundStyle(.white)
+                .font(.title)
+                .fontWeight(.bold)
+                .italic()
+            
+            Toggle("Ver Tempo", isOn: $verTempo)
+                .foregroundStyle(.white)
+                .bold()
+            
+            VerTempoWork(workModel: workModel, verTempoWork: verTempo)
+            
             
             Slider(value: $workModel.minutes, in: 1...25, step: 1)
                 .padding()
                 .disabled(workModel.isActive)
                 .animation(.easeInOut, value: workModel.minutes)
                 .frame(width: .infinity)
+                .tint(.yellow)
 
             HStack(spacing:50) {
                 
@@ -48,6 +47,7 @@ struct WorkView: View {
                 }, label: {
                     Image(systemName: "play.fill")
                         .font(.title)
+                        .tint(.black)
                 }).disabled(workModel.isActive)
                     .disabled(restModel.isActive)
                 
@@ -61,6 +61,9 @@ struct WorkView: View {
                 
             }
         }
+        .padding()
+        .frame(maxHeight: .infinity)
+        .background(.blue)
         .onReceive(timer) { _ in
             workModel.updateCountdown()
         }
@@ -68,5 +71,5 @@ struct WorkView: View {
 }
 
 #Preview {
-    WorkView(tabSelected: .constant(0))
+    WorkView(tabSelected: .constant(0), verTempo: false)
 }

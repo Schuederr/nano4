@@ -19,7 +19,7 @@ class WorkModel: ObservableObject {
     
     private var initialTime = 0
     private var endDate = Date()
-    
+        
     // Start the timer with the given amount of minutes
             func start(minutes: Float) {
                 self.initialTime = Int(minutes)

@@ -15,6 +15,8 @@
 		F15DBB212ACC53430015FEF2 /* RestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB202ACC53430015FEF2 /* RestView.swift */; };
 		F15DBB242ACC53630015FEF2 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DBB232ACC53630015FEF2 /* WorkModel.swift */; };
 		F18572042ACE071A00A61C2A /* RestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18572032ACE071A00A61C2A /* RestModel.swift */; };
+		F18572092ACF937B00A61C2A /* VerTempoWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18572082ACF937B00A61C2A /* VerTempoWork.swift */; };
+		F185720B2ACF971900A61C2A /* VerTempoRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F185720A2ACF971900A61C2A /* VerTempoRest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		F15DBB202ACC53430015FEF2 /* RestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestView.swift; sourceTree = "<group>"; };
 		F15DBB232ACC53630015FEF2 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
 		F18572032ACE071A00A61C2A /* RestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestModel.swift; sourceTree = "<group>"; };
+		F18572082ACF937B00A61C2A /* VerTempoWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerTempoWork.swift; sourceTree = "<group>"; };
+		F185720A2ACF971900A61C2A /* VerTempoRest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerTempoRest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				F15DBB0F2ACC51050015FEF2 /* nano4App.swift */,
-				F15DBB1D2ACC53150015FEF2 /* Views */,
 				F15DBB112ACC51050015FEF2 /* ContentView.swift */,
-				F15DBB232ACC53630015FEF2 /* WorkModel.swift */,
-				F18572032ACE071A00A61C2A /* RestModel.swift */,
+				F15DBB1D2ACC53150015FEF2 /* Views */,
+				F18572052ACF8B3100A61C2A /* Models */,
 				F15DBB132ACC51060015FEF2 /* Assets.xcassets */,
 				F15DBB152ACC51060015FEF2 /* Preview Content */,
 			);
@@ -83,8 +86,19 @@
 			children = (
 				F15DBB1E2ACC53390015FEF2 /* WorkView.swift */,
 				F15DBB202ACC53430015FEF2 /* RestView.swift */,
+				F18572082ACF937B00A61C2A /* VerTempoWork.swift */,
+				F185720A2ACF971900A61C2A /* VerTempoRest.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F18572052ACF8B3100A61C2A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F15DBB232ACC53630015FEF2 /* WorkModel.swift */,
+				F18572032ACE071A00A61C2A /* RestModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +175,8 @@
 				F15DBB122ACC51050015FEF2 /* ContentView.swift in Sources */,
 				F15DBB1F2ACC53390015FEF2 /* WorkView.swift in Sources */,
 				F15DBB212ACC53430015FEF2 /* RestView.swift in Sources */,
+				F18572092ACF937B00A61C2A /* VerTempoWork.swift in Sources */,
+				F185720B2ACF971900A61C2A /* VerTempoRest.swift in Sources */,
 				F15DBB102ACC51050015FEF2 /* nano4App.swift in Sources */,
 				F18572042ACE071A00A61C2A /* RestModel.swift in Sources */,
 			);
