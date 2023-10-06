@@ -25,13 +25,6 @@ struct VerTempoWork: View {
                     }
                 }
                 .padding()
-                .frame(width: .infinity)
-            //                .background(.thinMaterial)
-            //                .cornerRadius(20)
-            //                .overlay(
-            //                        RoundedRectangle(cornerRadius: 20)
-            //                            .stroke(Color.gray, lineWidth: 4)
-            //                    )
         } else {
             Text("trabalha")
         }

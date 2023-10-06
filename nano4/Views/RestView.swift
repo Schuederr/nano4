@@ -34,11 +34,22 @@ struct RestView: View {
                 .padding()
                 .disabled(restModel.isActive)
                 .animation(.easeInOut, value: restModel.minutes)
-                .frame(width: .infinity)
                 .tint(.red)
 
             HStack(spacing:50) {
                 Button(action: {
+                    
+                    let content = UNMutableNotificationContent()
+                    content.title = "Acabou :((("
+                    content.subtitle = "Vai estudar, safada"
+                    content.sound = UNNotificationSound.defaultRingtone
+                    
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 420, repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().add(request)
+                        
                 restModel.start(minutes: restModel.minutes)
                 }, label: {
                     Image(systemName: "play.fill")

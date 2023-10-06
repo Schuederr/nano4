@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import UserNotifications
 
 struct WorkView: View {
     
@@ -19,16 +20,19 @@ struct WorkView: View {
     private let width: Double = 250
     
     var body: some View {
-        VStack {
+        VStack(spacing: 50) {
             Text("VAAAAAAAAI")
                 .foregroundStyle(.white)
                 .font(.title)
                 .fontWeight(.bold)
                 .italic()
             
-            Toggle("Ver Tempo", isOn: $verTempo)
-                .foregroundStyle(.white)
+            VStack {
+                Toggle("Ver Tempo", isOn: $verTempo)
+                    .foregroundStyle(.white)
                 .bold()
+            }
+            .frame(maxWidth: 300, maxHeight: 50)
             
             VerTempoWork(workModel: workModel, verTempoWork: verTempo)
             
@@ -37,13 +41,32 @@ struct WorkView: View {
                 .padding()
                 .disabled(workModel.isActive)
                 .animation(.easeInOut, value: workModel.minutes)
-                .frame(width: .infinity)
                 .tint(.yellow)
 
             HStack(spacing:50) {
                 
                 Button(action: {
-                workModel.start(minutes: workModel.minutes)
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    
+                    let content = UNMutableNotificationContent()
+                    content.title = "ACABOU!!!"
+                    content.subtitle = "Vai ser feliz"
+                    content.sound = UNNotificationSound.defaultRingtone
+                    
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1500, repeats: false)
+                    
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                    
+                    UNUserNotificationCenter.current().add(request)
+                    
+                    workModel.start(minutes: workModel.minutes)
+                    
                 }, label: {
                     Image(systemName: "play.fill")
                         .font(.title)

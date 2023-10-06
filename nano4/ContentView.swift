@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     
     @State var tabSelected: Int = 0
     var body: some View {
-        TabView(selection: $tabSelected){
+        TabView(selection: $tabSelected){      
             WorkView(tabSelected: $tabSelected, verTempo: false)
                 .tag(0)
                 .tabItem {
