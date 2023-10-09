@@ -36,20 +36,22 @@ struct WorkView: View {
                 Spacer()
                 
                 Slider(value: $workModel.minutes, in: 1...25, step: 1)
-                    .padding()
+                    .padding(.horizontal)
                     .disabled(true)
                     .animation(.easeInOut, value: workModel.minutes)
                     .tint(.white)
                 
-            }.frame(width: 329, height: 235)
+                
+            } .frame(height: 235)
+                .frame(maxWidth: .infinity)
                 .padding(10)
-                .background(.white.opacity(0.25))
+                .background(.white.opacity(0.2))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke())
 
-            HStack(spacing:50) {
+            VStack {
                 Button(action: {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
                         if success {
@@ -73,18 +75,44 @@ struct WorkView: View {
                     workModel.start(minutes: workModel.minutes)
                     
                 }, label: {
-                    Image(systemName: "play.fill")
-                        .font(.title)
-                        .tint(.white)
+                    VStack{
+                        Text("Começar")
+                            .font(.title3)
+                            .bold()
+                            .foregroundStyle(workModel.isActive ? .gray : .white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(workModel.isActive ? .clear : .white.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke())
+                            .foregroundStyle(workModel.isActive ? .clear : .white)
+                    
                 }).disabled(workModel.isActive)
-                    .disabled(restModel.isActive)
+                    .padding(.bottom, 8)
                 
                 Button(action: {
                     showAlert = true
                 }, label: {
-                    Image(systemName: "stop.fill")
-                        .tint(.red)
-                        .font(.title)
+                    VStack {
+                        Text("Resetar")
+                            .font(.title3)
+                            .bold()
+                            .foregroundStyle(workModel.isActive ? .white : .gray)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(workModel.isActive ? .white.opacity(0.2) : .clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke())
+                                .foregroundStyle(workModel.isActive ? .white : .clear)
+
                 }).disabled(workModel.isActive == false)
                     .alert(isPresented: $showAlert){
                         Alert(
@@ -96,11 +124,11 @@ struct WorkView: View {
                     }
             }
         }
-        .padding()
+        .padding(.horizontal, 16)
         .frame(maxHeight: .infinity)
         .background(
             Image("fundoWork")
-                .opacity(0.4)
+                .opacity(0.35)
             
         )
         .onReceive(timer) { _ in

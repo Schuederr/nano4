@@ -19,7 +19,7 @@ struct RestView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(spacing: 50) {
 
             VStack {
                 Toggle("Ver Tempo", isOn: $verTempo)
@@ -34,12 +34,14 @@ struct RestView: View {
                 Spacer()
                 
                 Slider(value: $restModel.minutes, in: 1...7,step: 1)
-                    .padding()
+                    .padding(.horizontal)
                     .disabled(true)
                     .animation(.easeInOut, value: restModel.minutes)
                     .tint(.white)
                 
-            }.frame(width: 329, height: 235)
+            }
+            .frame(height: 235)
+            .frame(maxWidth: .infinity)
                 .padding(10)
                 .background(.white.opacity(0.25))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -47,7 +49,8 @@ struct RestView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke())
             
-            HStack(spacing:50) {
+            VStack {
+                
                 Button(action: {
                     let content = UNMutableNotificationContent()
                     content.title = "Acabou :((("
@@ -62,18 +65,44 @@ struct RestView: View {
                         
                 restModel.start(minutes: restModel.minutes)
                 }, label: {
-                    Image(systemName: "play.fill")
-                        .font(.title)
-                        .tint(.white)
+                    VStack {
+                        Text("Começar")
+                            .font(.title3)
+                            .bold()
+                            .foregroundStyle(restModel.isActive ? .gray : .white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(restModel.isActive ? .clear : .white.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke())
+                                .foregroundStyle(restModel.isActive ? .clear : .white)
                 }).disabled(restModel.isActive)
-                    .disabled(workModel.isActive)
+                    .padding(.bottom, 8)
+                
                 
                 Button(action: {
                     showAlert = true
                 }, label: {
-                    Image(systemName: "stop.fill")
-                        .tint(.red)
-                        .font(.title)
+                    VStack {
+                        Text("Resetar")
+                            .font(.title3)
+                            .bold()
+                            .foregroundStyle(restModel.isActive ? .white : .gray)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(restModel.isActive ? .white.opacity(0.2) : .clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke())
+                                .foregroundStyle(restModel.isActive ? .white : .clear)
+                    
                 }).disabled(restModel.isActive == false)
                     .alert(isPresented: $showAlert){
                         Alert(
@@ -83,7 +112,7 @@ struct RestView: View {
                     }
             }
         }
-        .padding()
+        .padding(.horizontal, 16)
         .frame(maxHeight: .infinity)
         .background(
         Image("fundoRest")
@@ -95,6 +124,8 @@ struct RestView: View {
         }
     }
 }
+
+
 
 #Preview {
     RestView()
