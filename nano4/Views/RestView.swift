@@ -112,7 +112,7 @@ struct RestView: View {
                     }
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
         .background(
         Image("fundoRest")
