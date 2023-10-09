@@ -19,12 +19,6 @@ struct VerTempoWork: View {
             Text("\(workModel.time)")
                 .font(.system(size: 72, weight: .black))
                 .foregroundStyle(.white)
-//                .alert("Timer done!", isPresented: $workModel.showingAlert) {
-//                    Button("Continue", role: .cancel) {
-//                        // Code
-//                    }
-//                }
-//                .padding()
         } else {
             Text("TRABALHA")
                 .font(.system(size: 40, weight: .black))
