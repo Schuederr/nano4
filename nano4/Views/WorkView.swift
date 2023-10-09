@@ -81,8 +81,7 @@ struct WorkView: View {
                             .bold()
                             .foregroundStyle(workModel.isActive ? .gray : .white)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(workModel.isActive ? .clear : .white.opacity(0.2))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -103,8 +102,7 @@ struct WorkView: View {
                             .bold()
                             .foregroundStyle(workModel.isActive ? .white : .gray)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(workModel.isActive ? .white.opacity(0.2) : .clear)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
