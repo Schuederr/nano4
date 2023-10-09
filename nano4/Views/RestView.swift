@@ -20,27 +20,35 @@ struct RestView: View {
     
     var body: some View {
         VStack {
-            Text("DESCANSA")
-                .foregroundStyle(.white)
-                .font(.title)
-                .bold()
-                .italic()
-            
-            Toggle("Ver Tempo", isOn: $verTempo)
-                .foregroundStyle(.white)
-                .bold()
-            
-            VerTempoRest(restModel: restModel, verTempoRest: verTempo)
-            
-            Slider(value: $restModel.minutes, in: 1...7,step: 1)
-                .padding()
-                .disabled(true)
-                .animation(.easeInOut, value: restModel.minutes)
-                .tint(.red)
 
+            VStack {
+                Toggle("Ver Tempo", isOn: $verTempo)
+                    .foregroundStyle(.white)
+                    .bold()
+                    .tint(.black)
+                
+                Spacer()
+                
+                VerTempoRest(restModel: restModel, verTempoRest: verTempo)
+                
+                Spacer()
+                
+                Slider(value: $restModel.minutes, in: 1...7,step: 1)
+                    .padding()
+                    .disabled(true)
+                    .animation(.easeInOut, value: restModel.minutes)
+                    .tint(.white)
+                
+            }.frame(width: 329, height: 235)
+                .padding(10)
+                .background(.white.opacity(0.25))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke())
+            
             HStack(spacing:50) {
                 Button(action: {
-                    
                     let content = UNMutableNotificationContent()
                     content.title = "Acabou :((("
                     content.subtitle = "Vai estudar, safada"
@@ -56,7 +64,7 @@ struct RestView: View {
                 }, label: {
                     Image(systemName: "play.fill")
                         .font(.title)
-                        .tint(.black)
+                        .tint(.white)
                 }).disabled(restModel.isActive)
                     .disabled(workModel.isActive)
                 
@@ -70,14 +78,18 @@ struct RestView: View {
                     .alert(isPresented: $showAlert){
                         Alert(
                         title: Text("Deseja resetar o timer?"),
-                        primaryButton: .destructive(Text("Cancelar")),
-                        secondaryButton:                                 .default(Text("Resetar"), action: restModel.reset))
+                        primaryButton: .default(Text("Cancelar")),
+                        secondaryButton:                                 .destructive(Text("Resetar"), action: restModel.reset))
                     }
             }
         }
         .padding()
         .frame(maxHeight: .infinity)
-        .background(.green)
+        .background(
+        Image("fundoRest")
+            .opacity(0.7)
+            
+        )
         .onReceive(timer) { _ in
             restModel.updateCountdown()
         }

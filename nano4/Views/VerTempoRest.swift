@@ -17,7 +17,7 @@ struct VerTempoRest: View {
         
         if verTempoRest == true {
             Text("\(restModel.time)")
-                .font(.system(size: 70, weight: .medium, design: .rounded))
+                .font(.system(size: 72, weight: .black))
                 .foregroundStyle(.white)
 //                .alert("Timer done!", isPresented: $restModel.showingAlert) {
 //                    Button("Continue", role: .cancel) {
@@ -26,7 +26,9 @@ struct VerTempoRest: View {
 //                }
 //                .padding()
         } else {
-            Text("descansa")
+            Text("DESCANSA")
+                .font(.system(size: 40, weight: .black))
+                .italic()
         }
         
     }

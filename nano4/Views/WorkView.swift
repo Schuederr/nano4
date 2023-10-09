@@ -23,30 +23,33 @@ struct WorkView: View {
     
     var body: some View {
         VStack(spacing: 50) {
-            Text("VAAAAAAAAI")
-                .foregroundStyle(.white)
-                .font(.title)
-                .fontWeight(.bold)
-                .italic()
-            
             VStack {
                 Toggle("Ver Tempo", isOn: $verTempo)
                     .foregroundStyle(.white)
-                .bold()
-            }
-            .frame(maxWidth: 300, maxHeight: 50)
-            
-            VerTempoWork(workModel: workModel, verTempoWork: verTempo)
-            
-            
-            Slider(value: $workModel.minutes, in: 1...25, step: 1)
-                .padding()
-                .disabled(true)
-                .animation(.easeInOut, value: workModel.minutes)
-                .tint(.yellow)
+                    .tint(.black)
+                    .bold()
+                
+                Spacer()
+                
+                VerTempoWork(workModel: workModel, verTempoWork: verTempo)
+                
+                Spacer()
+                
+                Slider(value: $workModel.minutes, in: 1...25, step: 1)
+                    .padding()
+                    .disabled(true)
+                    .animation(.easeInOut, value: workModel.minutes)
+                    .tint(.white)
+                
+            }.frame(width: 329, height: 235)
+                .padding(10)
+                .background(.white.opacity(0.25))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke())
 
             HStack(spacing:50) {
-                
                 Button(action: {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
                         if success {
@@ -61,7 +64,7 @@ struct WorkView: View {
                     content.subtitle = "Vai ser feliz"
                     content.sound = UNNotificationSound.defaultRingtone
                     
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1500, repeats: false)
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
                     
                     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                     
@@ -72,7 +75,7 @@ struct WorkView: View {
                 }, label: {
                     Image(systemName: "play.fill")
                         .font(.title)
-                        .tint(.black)
+                        .tint(.white)
                 }).disabled(workModel.isActive)
                     .disabled(restModel.isActive)
                 
@@ -95,7 +98,11 @@ struct WorkView: View {
         }
         .padding()
         .frame(maxHeight: .infinity)
-        .background(.blue)
+        .background(
+            Image("fundoWork")
+                .opacity(0.4)
+            
+        )
         .onReceive(timer) { _ in
             workModel.updateCountdown()
         }

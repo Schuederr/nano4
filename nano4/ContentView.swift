@@ -29,6 +29,7 @@ struct ContentView: View {
         .tabViewStyle(.page)
         .frame(maxHeight: .infinity)
         .ignoresSafeArea()
+        .preferredColorScheme(.dark)
     }
 }
 
