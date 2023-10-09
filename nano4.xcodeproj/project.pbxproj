@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F15DBB0C2ACC51050015FEF2 /* nano4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nano4.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F15DBB0C2ACC51050015FEF2 /* Pomodorinho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodorinho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DBB0F2ACC51050015FEF2 /* nano4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nano4App.swift; sourceTree = "<group>"; };
 		F15DBB112ACC51050015FEF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F15DBB132ACC51060015FEF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		F15DBB0D2ACC51050015FEF2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F15DBB0C2ACC51050015FEF2 /* nano4.app */,
+				F15DBB0C2ACC51050015FEF2 /* Pomodorinho.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F15DBB0B2ACC51050015FEF2 /* nano4 */ = {
+		F15DBB0B2ACC51050015FEF2 /* Pomodorinho */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F15DBB1A2ACC51060015FEF2 /* Build configuration list for PBXNativeTarget "nano4" */;
+			buildConfigurationList = F15DBB1A2ACC51060015FEF2 /* Build configuration list for PBXNativeTarget "Pomodorinho" */;
 			buildPhases = (
 				F15DBB082ACC51050015FEF2 /* Sources */,
 				F15DBB092ACC51050015FEF2 /* Frameworks */,
@@ -116,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = nano4;
+			name = Pomodorinho;
 			productName = nano4;
-			productReference = F15DBB0C2ACC51050015FEF2 /* nano4.app */;
+			productReference = F15DBB0C2ACC51050015FEF2 /* Pomodorinho.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F15DBB0B2ACC51050015FEF2 /* nano4 */,
+				F15DBB0B2ACC51050015FEF2 /* Pomodorinho */,
 			);
 		};
 /* End PBXProject section */
@@ -374,7 +374,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F15DBB1A2ACC51060015FEF2 /* Build configuration list for PBXNativeTarget "nano4" */ = {
+		F15DBB1A2ACC51060015FEF2 /* Build configuration list for PBXNativeTarget "Pomodorinho" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F15DBB1B2ACC51060015FEF2 /* Debug */,
