@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UserNotifications
 
 class WorkModel: ObservableObject {
+    
     @Published var isActive = false
     @Published var showingAlert = false
     @Published var time: String = "25:00"
@@ -19,7 +21,7 @@ class WorkModel: ObservableObject {
     
     private var initialTime = 0
     private var endDate = Date()
-        
+    
     // Start the timer with the given amount of minutes
             func start(minutes: Float) {
                 self.initialTime = Int(minutes)
@@ -33,6 +35,7 @@ class WorkModel: ObservableObject {
         self.minutes = Float(initialTime)
         self.isActive = false
         self.time = "\(Int(minutes)):00"
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     // Show updates of the timer
@@ -60,6 +63,7 @@ class WorkModel: ObservableObject {
         // Updates the time string with the formatted time
         self.minutes = Float(minutes)
         self.time = String(format:"%d:%02d", minutes, seconds)
+        
     }
     
 }

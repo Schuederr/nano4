@@ -49,7 +49,7 @@ struct RestView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke())
             
-            VStack {
+            HStack {
                 
                 Button(action: {
                     let content = UNMutableNotificationContent()

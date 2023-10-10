@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class RestModel: ObservableObject {
     @Published var isActive = false
@@ -33,6 +34,7 @@ class RestModel: ObservableObject {
         self.minutes = Float(initialTime)
         self.isActive = false
         self.time = "\(Int(minutes)):00"
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     // Show updates of the timer
