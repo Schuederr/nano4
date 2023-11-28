@@ -66,7 +66,7 @@ struct WorkView: View {
                     content.subtitle = "ACABOU!!! Vai ser feliz"
                     content.sound = UNNotificationSound.defaultRingtone
                     
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1500, repeats: false)
                     
                     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                     
