@@ -125,8 +125,7 @@ struct WorkView: View {
         .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
         .background(
-            Image("fundoWork")
-                .opacity(0.35)
+            Color("azulFundo")
             
         )
         .onReceive(timer) { _ in

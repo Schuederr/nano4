@@ -113,8 +113,7 @@ struct RestView: View {
         .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
         .background(
-        Image("fundoRest")
-            .opacity(0.7)
+            Color("azulFundo")
             
         )
         .onReceive(timer) { _ in

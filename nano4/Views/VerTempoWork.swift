@@ -18,11 +18,21 @@ struct VerTempoWork: View {
         if verTempoWork == true {
             Text("\(workModel.time)")
                 .font(.system(size: 72, weight: .black))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color("rosa"))
+            
         } else {
-            Text("TRABALHA")
-                .font(.system(size: 40, weight: .black))
-                .italic()
+            VStack {
+                Text("Hora de\ntrabalhar")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                .foregroundStyle(Color("rosa"))
+                .multilineTextAlignment(.center)
+                Spacer()
+                Text("Não se preocupe,\nestamos contando o tempo")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+            }.padding(24)
+                .frame(alignment: .center)
         }
         
     }
