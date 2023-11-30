@@ -53,16 +53,8 @@ struct WorkView: View {
                 
                 VerTempoWork(workModel: workModel, verTempoWork: verTempo)
                 
-                Slider(value: $workModel.minutes, in: 1...25, step: 1)
-                    .padding(.horizontal)
-                    .disabled(true)
-                    .animation(.easeInOut, value: workModel.minutes)
-                    .tint(.white)
-                
-                
             }  .frame(maxWidth: .infinity)
                 .padding(.vertical, 10)
-                .padding(.horizontal, 32)
 
             Spacer()
             

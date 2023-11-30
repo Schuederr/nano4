@@ -30,6 +30,13 @@ struct VerTempoRest: View {
                 Text("Não se preocupe,\nestamos contando o tempo")
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                
+                Slider(value: $restModel.minutes, in: 1...7,step: 1)
+                    .padding(.horizontal)
+                    .disabled(true)
+                    .animation(.easeInOut, value: restModel.minutes)
+                    .tint(.white)
+                
             }.padding(24)
                 .frame(alignment: .center)
         }

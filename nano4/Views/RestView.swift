@@ -50,16 +50,9 @@ struct RestView: View {
                 
                 VerTempoRest(restModel: restModel, verTempoRest: verTempo)
                 
-                Slider(value: $restModel.minutes, in: 1...7,step: 1)
-                    .padding(.horizontal)
-                    .disabled(true)
-                    .animation(.easeInOut, value: restModel.minutes)
-                    .tint(.white)
-                
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
-            .padding(.horizontal, 32)
             
             Spacer()
             
