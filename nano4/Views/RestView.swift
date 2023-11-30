@@ -118,7 +118,7 @@ struct RestView: View {
             }
         }
         .frame(maxHeight: .infinity)
-        .padding(.bottom, 32)
+        .padding(.bottom, 36)
         .background(
             Color("azulFundo")
             
