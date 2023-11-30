@@ -22,35 +22,39 @@ struct WorkView: View {
     
     
     var body: some View {
-        VStack(spacing: 50) {
-            VStack {
-                Toggle("Ver Tempo", isOn: $verTempo)
-                    .foregroundStyle(.white)
-                    .tint(.black)
-                    .bold()
-                
+        VStack {
+            HStack {
                 Spacer()
+                Button {
+                    verTempo.toggle()
+                } label: {
+                    VStack {
+                        Text(verTempo ? "Esconder tempo" : "Ver tempo")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.vertical,8)
+                    .padding(.horizontal, 12)
+                    .background(.white.opacity(0.3))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16)
+                        .stroke()
+                        .foregroundStyle(.white))
+                }
+            }.padding()
+            
+            Spacer()
+            
+            VStack {
                 
                 VerTempoWork(workModel: workModel, verTempoWork: verTempo)
                 
-                Spacer()
-                
-                Slider(value: $workModel.minutes, in: 1...25, step: 1)
-                    .padding(.horizontal)
-                    .disabled(true)
-                    .animation(.easeInOut, value: workModel.minutes)
-                    .tint(.white)
-                
-                
-            } .frame(height: 235)
-                .frame(maxWidth: .infinity)
-                .padding(10)
-                .background(.white.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke())
+            }  .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
 
+            Spacer()
+            
             HStack {
                 Button(action: {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
@@ -75,7 +79,7 @@ struct WorkView: View {
                     workModel.start(minutes: workModel.minutes)
                     
                 }, label: {
-                    VStack{
+                    VStack {
                         Text("Começar")
                             .font(.title3)
                             .bold()
@@ -83,12 +87,8 @@ struct WorkView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(workModel.isActive ? .clear : .white.opacity(0.2))
+                    .background(workModel.isActive ? .clear : Color("azulBotao"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                            .foregroundStyle(workModel.isActive ? .clear : .white)
                     
                 }).disabled(workModel.isActive)
                     .padding(.bottom, 8)
@@ -104,12 +104,8 @@ struct WorkView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(workModel.isActive ? .white.opacity(0.2) : .clear)
+                    .background(workModel.isActive ? Color("azulBotao") : .clear)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                                .foregroundStyle(workModel.isActive ? .white : .clear)
 
                 }).disabled(workModel.isActive == false)
                     .alert(isPresented: $showAlert){
@@ -122,12 +118,10 @@ struct WorkView: View {
                     }
             }
         }
-        .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
+        .padding(.bottom, 36)
         .background(
-            Image("fundoWork")
-                .opacity(0.35)
-            
+            Color("azulFundo")
         )
         .onReceive(timer) { _ in
             workModel.updateCountdown()
