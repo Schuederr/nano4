@@ -23,34 +23,30 @@ struct WorkView: View {
     
     var body: some View {
         VStack(spacing: 50) {
+            
+            Toggle("Ver Tempo", isOn: $verTempo)
+                .foregroundStyle(.white)
+                .tint(.black)
+                .bold()
+            
+            Spacer()
+            
             VStack {
-                Toggle("Ver Tempo", isOn: $verTempo)
-                    .foregroundStyle(.white)
-                    .tint(.black)
-                    .bold()
-                
-                Spacer()
                 
                 VerTempoWork(workModel: workModel, verTempoWork: verTempo)
                 
-                Spacer()
-                
-                Slider(value: $workModel.minutes, in: 1...25, step: 1)
+                Slider(value: $workModel.minutes, in: 1...25, step: 0.5)
                     .padding(.horizontal)
                     .disabled(true)
                     .animation(.easeInOut, value: workModel.minutes)
                     .tint(.white)
                 
                 
-            } .frame(height: 235)
-                .frame(maxWidth: .infinity)
+            }  .frame(maxWidth: .infinity)
                 .padding(10)
-                .background(.white.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke())
 
+            Spacer()
+            
             HStack {
                 Button(action: {
                     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
@@ -83,12 +79,8 @@ struct WorkView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(workModel.isActive ? .clear : .white.opacity(0.2))
+                    .background(workModel.isActive ? .clear : Color("azulBotao"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                            .foregroundStyle(workModel.isActive ? .clear : .white)
                     
                 }).disabled(workModel.isActive)
                     .padding(.bottom, 8)
@@ -104,12 +96,8 @@ struct WorkView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(workModel.isActive ? .white.opacity(0.2) : .clear)
+                    .background(workModel.isActive ? Color("azulBotao") : .clear)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                                .foregroundStyle(workModel.isActive ? .white : .clear)
 
                 }).disabled(workModel.isActive == false)
                     .alert(isPresented: $showAlert){

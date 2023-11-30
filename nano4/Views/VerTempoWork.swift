@@ -27,11 +27,12 @@ struct VerTempoWork: View {
                     .fontWeight(.black)
                 .foregroundStyle(Color("rosa"))
                 .multilineTextAlignment(.center)
-                Spacer()
+                .padding(.bottom, 72)
                 Text("Não se preocupe,\nestamos contando o tempo")
                     .font(.headline)
                     .multilineTextAlignment(.center)
             }.padding(24)
+            
                 .frame(alignment: .center)
         }
         
