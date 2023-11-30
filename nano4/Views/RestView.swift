@@ -20,14 +20,13 @@ struct RestView: View {
     
     var body: some View {
         VStack {
-            
             HStack {
-                
                 Spacer()
-                
-                Toggle(isOn: $verTempo) {
+                Button {
+                    verTempo.toggle()
+                } label: {
                     VStack {
-                        Text("Ver tempo")
+                        Text(verTempo ? "Esconder tempo" : "Ver tempo")
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundStyle(.white)
@@ -39,17 +38,13 @@ struct RestView: View {
                     .overlay(RoundedRectangle(cornerRadius: 16)
                         .stroke()
                         .foregroundStyle(.white))
-                    
                 }
-                .toggleStyle(.button)
-            }
+            }.padding()
             
             Spacer()
 
             VStack {
-                
                 VerTempoRest(restModel: restModel, verTempoRest: verTempo)
-                
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)

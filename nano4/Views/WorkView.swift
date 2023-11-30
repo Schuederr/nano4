@@ -23,29 +23,26 @@ struct WorkView: View {
     
     var body: some View {
         VStack {
-            
             HStack {
-                
                 Spacer()
-                
-                Toggle(isOn: $verTempo) {
+                Button {
+                    verTempo.toggle()
+                } label: {
                     VStack {
-                        Text("Ver tempo")
+                        Text(verTempo ? "Esconder tempo" : "Ver tempo")
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundStyle(.white)
-
-                    }.padding(.vertical,8)
+                    }
+                    .padding(.vertical,8)
                     .padding(.horizontal, 12)
                     .background(.white.opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .overlay(RoundedRectangle(cornerRadius: 16)
                         .stroke()
                         .foregroundStyle(.white))
-                    
                 }
-                .toggleStyle(.button)
-            }
+            }.padding()
             
             Spacer()
             
