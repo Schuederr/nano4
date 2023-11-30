@@ -19,19 +19,36 @@ struct RestView: View {
     
     
     var body: some View {
-        VStack(spacing: 50) {
+        VStack {
+            
+            HStack {
+                
+                Spacer()
+                
+                Toggle(isOn: $verTempo) {
+                    VStack {
+                        Text("Ver tempo")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+
+                    }.padding(.vertical,8)
+                    .padding(.horizontal, 12)
+                    .background(.white.opacity(0.3))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16)
+                        .stroke()
+                        .foregroundStyle(.white))
+                    
+                }
+                .toggleStyle(.button)
+            }
+            
+            Spacer()
 
             VStack {
-                Toggle("Ver Tempo", isOn: $verTempo)
-                    .foregroundStyle(.white)
-                    .bold()
-                    .tint(.black)
-                
-                Spacer()
                 
                 VerTempoRest(restModel: restModel, verTempoRest: verTempo)
-                
-                Spacer()
                 
                 Slider(value: $restModel.minutes, in: 1...7,step: 1)
                     .padding(.horizontal)
@@ -40,14 +57,11 @@ struct RestView: View {
                     .tint(.white)
                 
             }
-            .frame(height: 235)
             .frame(maxWidth: .infinity)
-                .padding(10)
-                .background(.white.opacity(0.25))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke())
+            .padding(.vertical, 10)
+            .padding(.horizontal, 32)
+            
+            Spacer()
             
             HStack {
                 
@@ -73,12 +87,9 @@ struct RestView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(restModel.isActive ? .clear : .white.opacity(0.2))
+                    .background(restModel.isActive ? .clear : Color("azulBotao"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                                .foregroundStyle(restModel.isActive ? .clear : .white)
+
                 }).disabled(restModel.isActive)
                     .padding(.bottom, 8)
                 
@@ -94,12 +105,8 @@ struct RestView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(restModel.isActive ? .white.opacity(0.2) : .clear)
+                    .background(restModel.isActive ? Color("azulBotao") : .clear)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke())
-                                .foregroundStyle(restModel.isActive ? .white : .clear)
                     
                 }).disabled(restModel.isActive == false)
                     .alert(isPresented: $showAlert){
@@ -110,8 +117,8 @@ struct RestView: View {
                     }
             }
         }
-        .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
+        .padding(.bottom, 32)
         .background(
             Color("azulFundo")
             

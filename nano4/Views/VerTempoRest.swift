@@ -26,7 +26,7 @@ struct VerTempoRest: View {
                     .fontWeight(.black)
                 .foregroundStyle(Color("verde"))
                 .multilineTextAlignment(.center)
-                Spacer()
+                .padding(.bottom, 72)
                 Text("Não se preocupe,\nestamos contando o tempo")
                     .font(.headline)
                     .multilineTextAlignment(.center)

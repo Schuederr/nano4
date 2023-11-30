@@ -22,12 +22,30 @@ struct WorkView: View {
     
     
     var body: some View {
-        VStack(spacing: 50) {
+        VStack {
             
-            Toggle("Ver Tempo", isOn: $verTempo)
-                .foregroundStyle(.white)
-                .tint(.black)
-                .bold()
+            HStack {
+                
+                Spacer()
+                
+                Toggle(isOn: $verTempo) {
+                    VStack {
+                        Text("Ver tempo")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+
+                    }.padding(.vertical,8)
+                    .padding(.horizontal, 12)
+                    .background(.white.opacity(0.3))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16)
+                        .stroke()
+                        .foregroundStyle(.white))
+                    
+                }
+                .toggleStyle(.button)
+            }
             
             Spacer()
             
@@ -35,7 +53,7 @@ struct WorkView: View {
                 
                 VerTempoWork(workModel: workModel, verTempoWork: verTempo)
                 
-                Slider(value: $workModel.minutes, in: 1...25, step: 0.5)
+                Slider(value: $workModel.minutes, in: 1...25, step: 1)
                     .padding(.horizontal)
                     .disabled(true)
                     .animation(.easeInOut, value: workModel.minutes)
@@ -43,7 +61,8 @@ struct WorkView: View {
                 
                 
             }  .frame(maxWidth: .infinity)
-                .padding(10)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 32)
 
             Spacer()
             
@@ -71,7 +90,7 @@ struct WorkView: View {
                     workModel.start(minutes: workModel.minutes)
                     
                 }, label: {
-                    VStack{
+                    VStack {
                         Text("Começar")
                             .font(.title3)
                             .bold()
@@ -110,11 +129,10 @@ struct WorkView: View {
                     }
             }
         }
-        .padding(.horizontal, 28)
         .frame(maxHeight: .infinity)
+        .padding(.bottom, 32)
         .background(
             Color("azulFundo")
-            
         )
         .onReceive(timer) { _ in
             workModel.updateCountdown()
