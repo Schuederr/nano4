@@ -56,7 +56,7 @@ struct RestView: View {
                 Button(action: {
                     let content = UNMutableNotificationContent()
                     content.title = "Pomodorinho"
-                    content.subtitle = "Acabou! Bora voltar a trabalhar :("
+                    content.subtitle = "Acabou! Bora voltar a trabalhar"
                     content.sound = UNNotificationSound.defaultRingtone
                     
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 420, repeats: false)

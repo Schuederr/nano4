@@ -51,6 +51,7 @@ class WorkModel: ObservableObject {
             self.isActive = false
             self.time = "0:00"
             self.showingAlert = true
+            reset()
             return
         }
         

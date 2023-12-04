@@ -67,7 +67,7 @@ struct WorkView: View {
                     
                     let content = UNMutableNotificationContent()
                     content.title = "Pomodorinho"
-                    content.subtitle = "ACABOU!!! Vai ser feliz"
+                    content.subtitle = "ACABOU!!! Aproveite para relaxar"
                     content.sound = UNNotificationSound.defaultRingtone
                     
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1500, repeats: false)
